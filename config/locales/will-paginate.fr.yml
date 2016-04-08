@@ -1,0 +1,4 @@
+fr: 
+  will_paginate:
+    previous_label: Prec
+    next_label: Suivant

@@ -1,0 +1,237 @@
+<div id="footer" class="rose-back">
+  <div class="container">
+
+    <div class="row visible-xs">
+      <div class="col-xs-6 text-center text-white">
+        <div>
+          <a href="tel:0176380024" class="text-white">
+            <i class="fa fa-phone fa-2x"></i>
+            <br/>
+            01.76.38.00.24
+          </a>
+        </div>
+      </div>
+      <div class="col-xs-6 text-center text-white">
+
+        <div>
+          <a href="mailto:hello@happydining.fr" class="text-white">
+            <div>
+              <i class="fa fa-envelope fa-2x"></i>
+            </div>
+            hello@happydining.fr</a>
+        </div>
+
+      </div>
+
+    </div>
+    <div class="row ">
+      <hr class="visible-xs"/>
+      <div class="col-sm-4 col-xs-12">
+        <h5 class="footer-title">A propos...</h5>
+        <ul>
+          <li>
+            <%= link_to "Qui sommes nous ?", general_team_path%>
+
+          </li>
+
+          <li>
+            <%= link_to "Contactez-nous", general_contact_path%>
+
+          </li>
+
+          <li>
+            <%= link_to "FAQ", general_faq_path%>
+          </li>
+          <li>
+            <%= link_to "CGU et mentions légales", general_legal_path%>
+
+          </li>
+          <li>
+            <%= link_to "Politique de cookies", general_cookies_path%>
+
+          </li>
+          <% if current_user %>
+          <li>
+            <%= link_to "Liste des restaurants", restaurants_list_user_path(current_user)%>
+
+          </li>
+        <% else %>
+
+          <li>
+            <%= link_to "Connexion Restaurateurs", new_owner_session_path%>
+
+          </li>
+          <% end %>
+          <li>
+            <%= link_to "Restaurateurs", restaurateurs_path%>
+
+          </li>
+
+          <li>
+            <%= link_to "Recrutements", jobs_path%>
+
+          </li>
+
+          <li>
+            <%= link_to "Nos Guides des restaurants", restaurants_lists_path, itemprop:"significantLink"%>
+
+          </li>
+
+          <li>
+            <%= link_to "Les restaurants du réseau", restaurants_path, itemprop:"significantLink"%>
+
+          </li>
+          <li>
+            <%= link_to "Le blog", blog_pages_path, itemprop:"significantLink"%>
+
+          </li>
+          <li>
+            <%= link_to "Une photo un resto", une_photo_un_resto_path, itemprop:"significantLink"  %>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <h5 class="footer-title">Services Entreprises</h5>
+        <ul>
+          <li>
+            <%= link_to "Restaurants Groupe pour Entreprise", restaurant_groupe_entreprise_path, itemprop:"significantLink" %>
+
+          </li>
+					<li>
+						<%= link_to "Repas de groupe à Paris", repas_groupe_paris_path %>
+					</li>
+          <li>
+            <%= link_to "Privatisation de restaurant Paris", privatisation_restaurant_paris_path, itemprop:"significantLink" %>
+
+          </li>
+          <li>
+            <%= link_to "Repas d'affaires", repas_affaires_path, itemprop:"significantLink" %>
+
+          </li>
+					<li>
+            <%= link_to "Diner professionnel à Paris", diner_entreprise_a_paris_path, itemprop:"significantLink" %>
+
+          </li>
+					<li>
+						<%= link_to "Déjeuner d'affaires", dejeuner_affaire_paris_path, itemprop:"significantLink" %>
+
+					</li>
+          <li>
+            <%= link_to "Restaurants Business à Paris", restaurant_business_path, itemprop:"significantLink" %>
+
+          </li>
+
+
+
+          <li>
+            <%= link_to "Restaurants Groupes Paris", restaurant_groupe_paris_path, itemprop:"significantLink" %>
+
+          </li>
+
+          <li>
+            <%= link_to "Espace entreprise", espace_entreprise_path, itemprop:"significantLink" %>
+          </li>
+
+					<li>
+            <%= link_to "Conciergerie pour Hotels", hotels_path, itemprop:"significantLink"  %>
+
+          </li>
+
+        </ul>
+
+        <h5 class="footer-title">Services Particuliers</h5>
+        <ul>
+          <li>
+            <%= link_to "Restaurants Anniversaires Paris", restaurant_anniversaire_paris_path, itemprop:"significantLink" %>
+
+          </li>
+
+          <li>
+            <%= link_to "Restaurants mariage à Paris", restaurant_mariage_paris_path, itemprop:"significantLink" %>
+          </li>
+          <li>
+            <%= link_to "Restaurants Groupes Particuliers", restaurant_groupe_particulier_path, itemprop:"significantLink" %>
+          </li>
+          <li>
+            <%= link_to "Bon plan restaurant à Paris", bon_plan_restaurant_paris_path, itemprop:"significantLink" %>
+          </li>
+
+
+        </ul>
+
+      </div>
+      <div class="col-sm-4 col-xs-12 hidden-xs">
+        <h5 class="footer-title">A votre écoute !</h5>
+        <ul>
+
+          <li>
+            8h - 23h30 7J/7
+          </li>
+          <li>
+            <a href="tel:0176380024">01.76.38.00.24</a>
+          </li>
+          <li>
+            <a href="mailto:hello@happydining.fr">hello@happydining.fr</a>
+          </li>
+          <li>
+            <a href="https://www.facebook.com/www.happydining.fr" target="_blank" class="hidden-xs">
+              <i class="fa fa-facebook-square fa-2x social-fb"></i>
+            </a>
+            <a href="https://twitter.com/Happy_Dining_" target="_blank" class="hidden-xs">
+              <i class="fa fa-twitter-square fa-2x social-tw"></i>
+            </a>
+            <a href="https://plus.google.com/+HappydiningFrance" target="_blank" class="hidden-xs">
+              <i class="fa fa-google-plus-square fa-2x social-gp"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/5362515" target="_blank" class="hidden-xs">
+              <i class="fa fa-linkedin-square fa-2x social-linkedin"></i>
+            </a>
+
+          </li>
+
+        </ul>
+
+      </div>
+
+      <div class="row visible-xs">
+
+        <div class="col-xs-12 visible-xs">
+          <hr/>
+          <div class="col-xs-3 text-center">
+            <a href="https://www.facebook.com/www.happydining.fr" target="_blank">
+              <i class="fa fa-facebook-square fa-3x text-white"></i>
+            </a>
+
+          </div>
+          <div class="col-xs-3 text-center">
+            <a href="https://twitter.com/Happy_Dining_" target="_blank">
+              <i class="fa fa-twitter-square fa-3x text-white"></i>
+            </a>
+
+          </div>
+          <div class="col-xs-3 text-center">
+            <a href="https://plus.google.com/+HappydiningFrance" target="_blank">
+              <i class="fa fa-google-plus-square fa-3x text-white"></i>
+            </a>
+
+          </div>
+          <div class="col-xs-3 text-center">
+            <a href="https://www.linkedin.com/company/5362515" target="_blank">
+              <i class="fa fa-linkedin-square fa-3x text-white"></i>
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+      <div class="row ">
+        <div class="col-md-12 text-8 margin-top-20">
+          * Réduction basée sur les prix publics affichés sur le menu ou tout autre support ayant la même fonction à valoir dans l’un des restaurants Happy Dining pour toute réservation passée depuis happydining.fr ou le 01.76.38.00.24, sous réserve de
+          disponibilité dans le restaurant choisi
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

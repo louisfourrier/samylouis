@@ -1,0 +1,35 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= content_for?(:title) ? yield(:title) : "Slack Bot Office" %></title>
+<meta name="description" content="<%= content_for?(:description) ? yield(:description) : "All applications for Office Message Bot" %>">
+<%= favicon_link_tag 'favicon.ico' %>
+
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="<%= content_for?(:title) ? yield(:title) : "Slack Bot Office" %>">
+<meta itemprop="description" content="<%= content_for?(:description) ? yield(:description) : "All applications for Office Message Bot"%>">
+
+<meta name="keywords" lang="fr" content="<%= content_for?(:keywords) ? yield(:keywords) : "bot, ai , slack bot , slack app, facebook app, messenger app, whatsapp " %>">
+<meta itemprop="image" content="<%= content_for?(:image) ? yield(:image) : "https://res.cloudinary.com/happydining/image/upload/v1437039576/community/page_happydining.jpg" %>">
+
+
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@Happy_Dining_">
+<meta name="twitter:title" content="<%= content_for?(:title) ? yield(:title) : "Slack Bot Office" %>">
+<meta name="twitter:description" content="<%= content_for?(:description) ? yield(:description) : "All applications for Office Message Bot" %>">
+<meta name="twitter:image" content="<%= content_for?(:image) ? yield(:image) : "https://res.cloudinary.com/happydining/image/upload/v1437039576/community/page_happydining.jpg" %>">
+<meta name="twitter:url" content="<%= "https://#{request.host+request.fullpath}" %>">
+
+<!-- Open Graph data -->
+
+<meta property="og:title" content="<%= content_for?(:title) ? yield(:title) : "Slack Bot Office" %>" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="<%= "https://#{request.host+request.fullpath}" %>"/>
+<meta property="og:image" content="<%= content_for?(:image) ? yield(:image) : "https://res.cloudinary.com/happydining/image/upload/v1437039576/community/page_happydining.jpg" %>" />
+<meta property="og:description" content="<%= content_for?(:description) ? yield(:description) : "All applications for Office Message Bot" %>" />
+<meta property="og:site_name" content="OfficeBot" />
+<meta property="og:locale" content="FR" />
+
+<!-- Google plus author -->
+<link rel="canonical" href="<%= "https://#{request.host+request.fullpath}" %>" itemprop="url" />

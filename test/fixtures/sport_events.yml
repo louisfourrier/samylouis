@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: sport_events
+#
+#  id           :integer          not null, primary key
+#  event_name   :string
+#  event_date   :date
+#  event_time   :string
+#  team_first   :string
+#  team_second  :string
+#  championship :string
+#  sport        :string
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event_name: MyString
+  event_date: 2016-04-08
+  event_time: MyString
+  team_first: MyString
+  team_second: MyString
+  championship: MyString
+  sport: MyString
+
+two:
+  event_name: MyString
+  event_date: 2016-04-08
+  event_time: MyString
+  team_first: MyString
+  team_second: MyString
+  championship: MyString
+  sport: MyString

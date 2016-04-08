@@ -1,0 +1,50 @@
+# == Schema Information
+#
+# Table name: football_trades
+#
+#  id                   :integer          not null, primary key
+#  football_event_id    :integer
+#  bet_platform_name    :string
+#  bet_platform_url     :text
+#  scrap_code           :text
+#  team_first_name      :string
+#  team_second_name     :string
+#  event_date           :date
+#  event_time           :string
+#  first_winning_ratio  :float
+#  both_winning_ratio   :float
+#  second_winning_ratio :float
+#  last_update          :datetime
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  football_event_id: 
+  bet_platform_name: MyString
+  bet_platform_url: MyText
+  scrap_code: MyText
+  team_first_name: MyString
+  team_second_name: MyString
+  event_date: 2016-04-06
+  event_time: MyString
+  first_winning_ratio: 1.5
+  both_winning_ratio: 1.5
+  second_winning_ratio: 1.5
+  last_update: 2016-04-06 18:06:54
+
+two:
+  football_event_id: 
+  bet_platform_name: MyString
+  bet_platform_url: MyText
+  scrap_code: MyText
+  team_first_name: MyString
+  team_second_name: MyString
+  event_date: 2016-04-06
+  event_time: MyString
+  first_winning_ratio: 1.5
+  both_winning_ratio: 1.5
+  second_winning_ratio: 1.5
+  last_update: 2016-04-06 18:06:54

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Event name:</strong>
+  <%= @sport_event.event_name %>
+</p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= @sport_event.event_date %>
+</p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @sport_event.event_time %>
+</p>
+
+<p>
+  <strong>Team first:</strong>
+  <%= @sport_event.team_first %>
+</p>
+
+<p>
+  <strong>Team second:</strong>
+  <%= @sport_event.team_second %>
+</p>
+
+<p>
+  <strong>Championship:</strong>
+  <%= @sport_event.championship %>
+</p>
+
+<p>
+  <strong>Sport:</strong>
+  <%= @sport_event.sport %>
+</p>
+
+<%= link_to 'Edit', edit_sport_event_path(@sport_event) %> |
+<%= link_to 'Back', sport_events_path %>

@@ -1,0 +1,45 @@
+<%= form_for(@sport_event) do |f| %>
+  <% if @sport_event.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sport_event.errors.count, "error") %> prohibited this sport_event from being saved:</h2>
+
+      <ul>
+      <% @sport_event.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :event_name %><br>
+    <%= f.text_field :event_name %>
+  </div>
+  <div class="field">
+    <%= f.label :event_date %><br>
+    <%= f.date_select :event_date %>
+  </div>
+  <div class="field">
+    <%= f.label :event_time %><br>
+    <%= f.text_field :event_time %>
+  </div>
+  <div class="field">
+    <%= f.label :team_first %><br>
+    <%= f.text_field :team_first %>
+  </div>
+  <div class="field">
+    <%= f.label :team_second %><br>
+    <%= f.text_field :team_second %>
+  </div>
+  <div class="field">
+    <%= f.label :championship %><br>
+    <%= f.text_field :championship %>
+  </div>
+  <div class="field">
+    <%= f.label :sport %><br>
+    <%= f.text_field :sport %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
