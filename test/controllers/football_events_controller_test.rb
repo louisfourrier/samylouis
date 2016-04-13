@@ -11,6 +11,7 @@
 #  championship :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  inverse_sum  :float
 #
 
 require 'test_helper'

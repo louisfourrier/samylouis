@@ -1,14 +1,19 @@
-# Net Bet Scrapper
-class NetbetScrapper
+# Not operational
+class WinamaxScrapper
   require 'rubygems'
   require 'nokogiri'
   require 'open-uri'
   require 'uri'
 
-  def self.football_scraper
+  def self.football_scrapper
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/7")
+  end
 
-    footballurl = 'https://netbetsport.fr/pari/sport/id/13/pariez-sur-Football'
-    platform = 'NetBet'
+  def self.football_generic_scrapper(url)
+    footballurl = url
+    platform = 'Winamax'
+    sport = "football"
+    scenario_name = "1:3 win-null-lose"
     # response = Typhoeus.get(football_url, followlocation: true)
     page = Nokogiri::HTML(open(footballurl))
     # Get all the coming days in the page
@@ -41,9 +46,14 @@ class NetbetScrapper
       both_ratio = odds[1].text.to_s.gsub(',', '.').to_f
       second_ratio = odds[2].text.to_s.gsub(',', '.').to_f
 
-      FootballTrade.create(bet_platform_name: platform, bet_platform_url: link, team_first_name: team_first, team_second_name: team_second, event_date: day, event_time: time, first_winning_ratio: first_ratio, both_winning_ratio: both_ratio,
-                           second_winning_ratio: second_ratio, last_update: Time.zone.now)
+      # Creation or update of the Trade
+      st = SportTrade.create_or_update(platform_name: platform, platform_url: link, team_first: team_first, team_second: team_second, event_time: time, sport: sport, event_date: day, scenario_name: scenario_name,  last_update: Time.zone.now)
+      st.add_update_odd("first_team", first_ratio, team_first)
+      st.add_update_odd("equality", both_ratio, "Match nul")
+      st.add_update_odd("second_team", second_ratio, team_second)
 
     end
+
+
   end
 end

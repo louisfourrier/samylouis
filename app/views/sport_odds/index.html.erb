@@ -1,0 +1,10 @@
+
+
+<h1 class="page-header">Listing Sport Odds (<%= @sport_odds.count %>)</h1>
+
+
+<%= render partial: "sport_odds/sport_odds_list", locals:{ sport_odds: @sport_odds} %>
+
+<br>
+
+<%= link_to 'New Sport odd', new_sport_odd_path %>

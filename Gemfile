@@ -57,6 +57,8 @@ gem 'slack-ruby-client'
 gem 'capybara'
 gem 'poltergeist'
 gem "mechanize"
+gem "watir-rails"
+gem "watir-webdriver"
 
 
 

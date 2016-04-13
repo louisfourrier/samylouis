@@ -1,19 +1,8 @@
-<p id="notice"><%= notice %></p>
+<h1 class="page-header text-uppercase">Sport Event : <%= @sport_event.sport %> => <%= @sport_event.event_name %></h1>
 
-<p>
-  <strong>Event name:</strong>
-  <%= @sport_event.event_name %>
-</p>
+<h3>Date : <%= @sport_event.event_date %></h3>
 
-<p>
-  <strong>Event date:</strong>
-  <%= @sport_event.event_date %>
-</p>
-
-<p>
-  <strong>Event time:</strong>
-  <%= @sport_event.event_time %>
-</p>
+<h3>Arbitrage Scenario : <%= @sport_event.scenario_name %></h3>
 
 <p>
   <strong>Team first:</strong>
@@ -25,15 +14,15 @@
   <%= @sport_event.team_second %>
 </p>
 
-<p>
-  <strong>Championship:</strong>
-  <%= @sport_event.championship %>
-</p>
+<h2 class="page-header"> Sport Trades (<%= @sport_trades.count %>)</h2>
+<%= render partial: "sport_trades/sport_trades_odds_list", locals: {sport_event: @sport_event} %>
 
-<p>
-  <strong>Sport:</strong>
-  <%= @sport_event.sport %>
-</p>
+<h2 class="page-header"> Trades Analysis</h2>
+<% @sport_event.get_odd_names.each do |name| %>
+Best Odd for <strong><%= name %></strong> : <strong><%= @sport_event.best_odd_for(name).value %></strong> <%= @sport_event.best_odd_for(name).sport_trade.platform_name %><br />
+<% end %>
+<hr />
 
-<%= link_to 'Edit', edit_sport_event_path(@sport_event) %> |
-<%= link_to 'Back', sport_events_path %>
+<h3>Inverse Sum : <%= @sport_event.get_inverse_sum %></h3>
+
+<hr />

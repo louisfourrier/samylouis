@@ -1,0 +1,59 @@
+
+<h1 class="page-header">Sport Trade lié à <%= link_to @sport_trade.sport_event.event_name, @sport_trade.sport_event %> (trades : <%= @sport_trade.sport_event.sport_trades.count %>)</h1>
+
+
+<h3>
+  <strong>Bet platform name : </strong>
+  <%= @sport_trade.platform_name %>
+</h3>
+<h3>
+  <strong>Sport : </strong>
+  <%= @sport_trade.sport %>
+</h3>
+
+
+<p>
+  <strong>Scenario Name :</strong>
+  <%= @sport_trade.scenario_name %>
+</p>
+
+<p>
+  <strong>Platform url : </strong>
+  <%= @sport_trade.platform_url %>
+</p>
+
+<p>
+  <strong>Scenario choice:</strong>
+  <%= @sport_trade.scenario_choice %>
+</p>
+
+<p>
+  <strong>Team first:</strong>
+  <%= @sport_trade.team_first %>
+</p>
+
+<p>
+  <strong>Team second:</strong>
+  <%= @sport_trade.team_second %>
+</p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= @sport_trade.event_date %>
+</p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @sport_trade.event_time %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @sport_trade.last_update %>
+</p>
+
+<h2 class="page-header">Sport Odds (<%= @sport_odds.count %>) Ratio : <%= @sport_trade.inverse_sum %></h2>
+
+<%= render partial: "sport_odds/sport_odds_list", locals:{sport_odds: @sport_odds} %>
+
+<hr />

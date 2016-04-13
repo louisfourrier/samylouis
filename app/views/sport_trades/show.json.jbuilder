@@ -1,0 +1,1 @@
+json.extract! @sport_trade, :id, :sport_event_id, :platform_name, :platform_url, :sport, :scenario_choice, :scenario_name, :team_first, :team_second, :event_name, :event_date, :event_time, :last_update, :inverse_sum, :created_at, :updated_at

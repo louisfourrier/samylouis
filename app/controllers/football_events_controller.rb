@@ -11,6 +11,7 @@
 #  championship :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  inverse_sum  :float
 #
 
 class FootballEventsController < ApplicationController
@@ -19,7 +20,7 @@ class FootballEventsController < ApplicationController
   # GET /football_events
   # GET /football_events.json
   def index
-    @football_events = FootballEvent.search_and_paginate(params)
+    @football_events = FootballEvent.search_and_paginate(params).order('football_events.inverse_sum')
   end
 
   # GET /football_events/1

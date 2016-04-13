@@ -1,0 +1,44 @@
+# == Schema Information
+#
+# Table name: tennis_trades
+#
+#  id                :integer          not null, primary key
+#  bet_platform_name :string
+#  bet_platform_url  :text
+#  team_first_name   :string
+#  team_second_name  :string
+#  event_date        :date
+#  event_time        :string
+#  first_ratio       :float
+#  second_ratio      :float
+#  sport_event_id    :integer
+#  last_update       :datetime
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bet_platform_name: MyString
+  bet_platform_url: MyText
+  team_first_name: MyString
+  team_second_name: MyString
+  event_date: 2016-04-08
+  event_time: MyString
+  first_ratio: 1.5
+  second_ratio: 1.5
+  sport_event_id: 
+  last_update: 2016-04-08 18:16:49
+
+two:
+  bet_platform_name: MyString
+  bet_platform_url: MyText
+  team_first_name: MyString
+  team_second_name: MyString
+  event_date: 2016-04-08
+  event_time: MyString
+  first_ratio: 1.5
+  second_ratio: 1.5
+  sport_event_id: 
+  last_update: 2016-04-08 18:16:49

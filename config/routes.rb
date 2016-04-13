@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :sport_odds
+  resources :sport_trades
+  resources :tennis_trades
   resources :sport_events
   resources :football_trades
   resources :football_events

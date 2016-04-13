@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bet platform name:</strong>
+  <%= @tennis_trade.bet_platform_name %>
+</p>
+
+<p>
+  <strong>Bet platform url:</strong>
+  <%= @tennis_trade.bet_platform_url %>
+</p>
+
+<p>
+  <strong>Team first name:</strong>
+  <%= @tennis_trade.team_first_name %>
+</p>
+
+<p>
+  <strong>Team second name:</strong>
+  <%= @tennis_trade.team_second_name %>
+</p>
+
+<p>
+  <strong>Event date:</strong>
+  <%= l @tennis_trade.event_date %>
+</p>
+
+<p>
+  <strong>Event time:</strong>
+  <%= @tennis_trade.event_time %>
+</p>
+
+<p>
+  <strong>First ratio:</strong>
+  <%= @tennis_trade.first_ratio %>
+</p>
+
+<p>
+  <strong>Second ratio:</strong>
+  <%= @tennis_trade.second_ratio %>
+</p>
+
+<p>
+  <strong>Sport event:</strong>
+  <%= @tennis_trade.sport_event %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @tennis_trade.last_update %>
+</p>
+
+<%= link_to 'Edit', edit_tennis_trade_path(@tennis_trade) %> |
+<%= link_to 'Back', tennis_trades_path %>

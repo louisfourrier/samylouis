@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sport trade:</strong>
+  <%= @sport_odd.sport_trade %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @sport_odd.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @sport_odd.value %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @sport_odd.last_update %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @sport_odd.description %>
+</p>
+
+<p>
+  <strong>Scenario name:</strong>
+  <%= @sport_odd.scenario_name %>
+</p>
+
+<%= link_to 'Edit', edit_sport_odd_path(@sport_odd) %> |
+<%= link_to 'Back', sport_odds_path %>

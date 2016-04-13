@@ -106,6 +106,10 @@ class FootballTrade < ActiveRecord::Base
   # Assign or create the Football Event
   def check_for_football_event
     events = FootballEvent.where('football_events.event_date = ? AND football_events.team_first = ? AND football_events.team_second = ?', self.event_date, self.team_first_name, self.team_second_name)
+    # Second round to found nearly same events
+    if events.empty?
+      events = FootballEvent.where('football_events.event_date = ? AND football_events.team_first ILIKE ? AND football_events.team_second ILIKE ?', self.event_date, "%#{self.team_first_name}%", "%#{self.team_second_name}%")
+    end
     if events.empty?
       event = FootballEvent.create_from_trade(self)
     else
@@ -117,10 +121,12 @@ class FootballTrade < ActiveRecord::Base
   # Sanitize Fields to have common grounds
   def sanitize_entries
     if !self.team_first_name.blank?
-      self.team_first_name = I18n.transliterate(self.team_first_name.to_s.downcase.strip).to_s
+      first_name = I18n.transliterate(self.team_first_name.to_s.downcase.strip).to_s.downcase.strip
+      self.team_first_name = SportSanitizer.football_team_sanitizer(first_name)
     end
     if !self.team_second_name.blank?
-      self.team_second_name = I18n.transliterate(self.team_second_name.to_s.downcase.strip).to_s
+      second_name = I18n.transliterate(self.team_second_name.to_s.downcase.strip).to_s.downcase.strip
+      self.team_second_name = SportSanitizer.football_team_sanitizer(second_name)
     end
     if !self.first_winning_ratio.blank?
       self.first_winning_ratio = self.first_winning_ratio.to_s.gsub(',', '.').to_f

@@ -11,6 +11,7 @@
 #  championship :string
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
+#  inverse_sum  :float
 #
 
 # Class that will disappear in the future for SportEvent. General case
@@ -22,19 +23,14 @@ class FootballEvent < ActiveRecord::Base
 
   before_validation :sanitize_entries
 
-  # Check if there are opportunities of investment in all the Football Event
-  def self.get_opportunities
-    opp = []
+  # UPDATE the inverse sum ration in the Database
+  def self.update_inverse_sum
     self.find_each do |fe|
       begin
-        if fe.inverse_sum < 1
-          opp << fe.id
-        end
+        fe.update(inverse_sum: fe.get_inverse_sum)
       rescue
-
       end
     end
-    return opp
   end
 
   def best_first_ratio
@@ -49,7 +45,7 @@ class FootballEvent < ActiveRecord::Base
     self.football_trades.pluck(:second_winning_ratio).sort.last
   end
 
-  def inverse_sum
+  def get_inverse_sum
     sum = 1.0 / self.best_first_ratio + 1.0 / self.best_both_ratio + 1.0 / self.best_second_ratio
     return sum
   end

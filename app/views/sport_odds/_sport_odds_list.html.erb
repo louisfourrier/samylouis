@@ -1,0 +1,39 @@
+<div class="row">
+		<div class="text-center pagination-hd">
+			<%= will_paginate sport_odds, renderer: BootstrapPagination::Rails  %>
+		</div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Sport trade</th>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Last update</th>
+      <th>Scenario name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% sport_odds.each do |sport_odd| %>
+      <tr>
+        <td><%= link_to sport_odd.sport_trade.platform_name, sport_odd.sport_trade  %></td>
+        <td><%= sport_odd.name %></td>
+        <td><%= sport_odd.value %></td>
+        <td><%= sport_odd.last_update %></td>
+        <td><%= sport_odd.scenario_name %></td>
+        <td><%= link_to 'Show', sport_odd %></td>
+        <td><%= link_to 'Edit', edit_sport_odd_path(sport_odd) %></td>
+        <td><%= link_to 'Destroy', sport_odd, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="row">
+		<div class="text-center pagination-hd">
+			<%= will_paginate sport_odds, renderer: BootstrapPagination::Rails  %>
+		</div>
+</div>

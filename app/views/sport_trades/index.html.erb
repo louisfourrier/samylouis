@@ -1,0 +1,7 @@
+<h1 class="page-header">Listing Sport Trades (<%= @sport_trades.count %>)</h1>
+
+<%= render partial: "sport_trades/sport_trades_list", locals: {sport_trades: @sport_trades} %>
+
+<hr / >
+
+<%= link_to 'New Sport trade', new_sport_trade_path %>

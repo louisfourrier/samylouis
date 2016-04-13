@@ -2,16 +2,19 @@
 #
 # Table name: sport_events
 #
-#  id           :integer          not null, primary key
-#  event_name   :string
-#  event_date   :date
-#  event_time   :string
-#  team_first   :string
-#  team_second  :string
-#  championship :string
-#  sport        :string
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id              :integer          not null, primary key
+#  event_name      :string
+#  event_date      :date
+#  event_time      :string
+#  team_first      :string
+#  team_second     :string
+#  championship    :string
+#  sport           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  inverse_sum     :float
+#  scenario_choice :integer
+#  scenario_name   :string
 #
 
 class SportEventsController < ApplicationController
@@ -20,12 +23,13 @@ class SportEventsController < ApplicationController
   # GET /sport_events
   # GET /sport_events.json
   def index
-    @sport_events = SportEvent.all
+    @sport_events = SportEvent.search_and_paginate(params)
   end
 
   # GET /sport_events/1
   # GET /sport_events/1.json
   def show
+    @sport_trades = @sport_event.sport_trades
   end
 
   # GET /sport_events/new

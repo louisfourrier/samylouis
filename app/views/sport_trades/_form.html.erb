@@ -1,0 +1,69 @@
+<%= form_for(@sport_trade) do |f| %>
+  <% if @sport_trade.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sport_trade.errors.count, "error") %> prohibited this sport_trade from being saved:</h2>
+
+      <ul>
+      <% @sport_trade.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :sport_event_id %><br>
+    <%= f.text_field :sport_event_id %>
+  </div>
+  <div class="field">
+    <%= f.label :platform_name %><br>
+    <%= f.text_field :platform_name %>
+  </div>
+  <div class="field">
+    <%= f.label :platform_url %><br>
+    <%= f.text_area :platform_url %>
+  </div>
+  <div class="field">
+    <%= f.label :sport %><br>
+    <%= f.text_field :sport %>
+  </div>
+  <div class="field">
+    <%= f.label :scenario_choice %><br>
+    <%= f.number_field :scenario_choice %>
+  </div>
+  <div class="field">
+    <%= f.label :scenario_name %><br>
+    <%= f.text_field :scenario_name %>
+  </div>
+  <div class="field">
+    <%= f.label :team_first %><br>
+    <%= f.text_field :team_first %>
+  </div>
+  <div class="field">
+    <%= f.label :team_second %><br>
+    <%= f.text_field :team_second %>
+  </div>
+  <div class="field">
+    <%= f.label :event_name %><br>
+    <%= f.text_field :event_name %>
+  </div>
+  <div class="field">
+    <%= f.label :event_date %><br>
+    <%= f.date_select :event_date %>
+  </div>
+  <div class="field">
+    <%= f.label :event_time %><br>
+    <%= f.text_field :event_time %>
+  </div>
+  <div class="field">
+    <%= f.label :last_update %><br>
+    <%= f.datetime_select :last_update %>
+  </div>
+  <div class="field">
+    <%= f.label :inverse_sum %><br>
+    <%= f.text_field :inverse_sum %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

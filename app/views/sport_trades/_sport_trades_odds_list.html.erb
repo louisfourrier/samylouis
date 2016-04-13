@@ -1,0 +1,38 @@
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Platform name</th>
+      <th>Team first</th>
+      <th>Team second</th>
+      <% sport_event.get_odd_names.each do |name| %>
+      <th><%= name %></th>
+      <% end %>
+      <th>
+        Last Update
+      </th>
+      <th>Inverse sum</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% sport_event.sport_trades.each do |sport_trade| %>
+      <tr>
+        <td><%= sport_trade.platform_name %></td>
+        <td><%= sport_trade.team_first %></td>
+        <td><%= sport_trade.team_second %></td>
+        <% sport_event.get_odd_names.each do |name| %>
+        <td><%= sport_trade.get_odd_with_name(name) %></td>
+        <% end %>
+        <td>
+          <%= l sport_trade.last_update %>
+        </td>
+        <td><%= sport_trade.inverse_sum %></td>
+        <td><%= link_to 'Voir', sport_trade %></td>
+        <td><%= link_to 'Edit', edit_sport_trade_path(sport_trade) %></td>
+        <td><%= link_to 'Destroy', sport_trade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
