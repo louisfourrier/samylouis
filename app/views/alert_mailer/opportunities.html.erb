@@ -3,7 +3,7 @@
 
 <% @sport_events.each do |sport_event| %>
 <p>
-  <%= link_to sport_event.event_name, sport_event_url %> <br  />
+  <%= link_to sport_event.event_name, sport_event_url(sport_event) %> <br  />
   Inverse Ratio : <%= sport_event.inverse_sum %><br  />
   Sport : <%= sport_event.sport %>
 
