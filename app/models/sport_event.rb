@@ -20,7 +20,7 @@
 # New Class that will become Polymorphic
 class SportEvent < ActiveRecord::Base
   include CommonMethod
-  has_many :sport_trades
+  has_many :sport_trades, dependent: :destroy
   has_many :sport_odds, through: :sport_trades
 
   validates :event_name, :event_date, :team_first, :team_second, presence: true

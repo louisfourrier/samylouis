@@ -58,13 +58,7 @@ task :prod_basket_global_scrapping => :environment do
 end
 
 task :prod_all_global_scrapping => :environment do
-
-  puts "Clean Outdated Trade"
-  SportTrade.clean_outdated
-  puts "Clean outdated events"
-  SportEvent.clean_outdated
-  SportEvent.clean_not_linked
-
+  SportEvent.destroy_all
 
   puts "Scrapping on all the Bet Sites FOOTBALL"
 
