@@ -7,40 +7,48 @@ class WinamaxScrapper
 
   def self.football_scrapper
     self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/7")
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/1")
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/32")
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/31")
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/30")
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/44")
+    self.football_generic_scrapper("https://www.winamax.fr/paris-sportifs#!/sports/1/800000007")
   end
 
   def self.football_generic_scrapper(url)
-    footballurl = url
     platform = 'Winamax'
     sport = "football"
     scenario_name = "1:3 win-null-lose"
     # response = Typhoeus.get(football_url, followlocation: true)
-    page = Nokogiri::HTML(open(footballurl))
+    page = WatirScrapper.html_website(url, 10)
     # Get all the coming days in the page
-    coming_games = page.css('#typ1 .question-content')
+    coming_games = page.css('.event-list .event.cat')
     # Go Line by Line if find a date modify the date
     # By default the first date is today
     day = Date.today
+    time = nil
     coming_games.each do |line|
+      begin
       # Get the Day
-      unless line.css('.game-day-title').empty?
-        date = line.css('.game-day-title').text.to_date
+      unless line.css('.date-title').empty?
+        date = line.css('.date-title').text.to_s
+        date_words = date.split(' ')
+        date_words.shift
+        date = date_words.join(' ')
         puts date
-        day = date
+        day = date.to_date
+        time = line.css('.time').text.to_s
       end
 
-      game = line.css('.win-the-game-content')
+      event_name = line.css('.event-name').text
 
-      time = game.css('.td-time').text
-      event_name = game.css('.td-name').text
-
-      teams = event_name.split('/')
-
+      teams = event_name.split('-')
       team_first = teams.first.to_s
       team_second = teams.last.to_s
-      link = game.css('.td-name a').first['href'].to_s
 
-      odds = game.css('span.td-cote')
+      link = line.css('.event-name a').first['href'].to_s
+
+      odds = line.css('.odd-button .variable')
 
       first_ratio = odds[0].text.to_s.gsub(',', '.').to_f
       both_ratio = odds[1].text.to_s.gsub(',', '.').to_f
@@ -51,6 +59,9 @@ class WinamaxScrapper
       st.add_update_odd("first_team", first_ratio, team_first)
       st.add_update_odd("equality", both_ratio, "Match nul")
       st.add_update_odd("second_team", second_ratio, team_second)
+    rescue
+      puts "Errors in Winamax football scrapper"
+    end
 
     end
 

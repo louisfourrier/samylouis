@@ -77,7 +77,7 @@
   <tbody>
     <% sport_trades.each do |sport_trade| %>
       <tr>
-        <td><%= link_to sport_trade.sport_event.event_name, sport_trade.sport_event %></td>
+        <td><%= link_to sport_trade.sport_event.try(:event_name), sport_trade.sport_event %></td>
         <td><%= sport_trade.event_date %></td>
         <td><%= sport_trade.platform_name %></td>
         <td><%= sport_trade.sport %></td>

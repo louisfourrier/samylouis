@@ -9,6 +9,21 @@ class BetfirstScrapper
   # Get all the links corresponding to each league
   def self.football_scrapper
     self.football_generic_scrapper("http://betfirst.dhnet.be/football/1_bundesliga")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/2_bundesliga")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/coupe_d_allemagne")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/1_premier_league")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/2_championship")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/1_jupiler_pro_league")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/1_la_liga")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/coupe_d_espagne")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/segunda_b_g1")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/ligue_europa")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/euro_2016")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/1_ligue_1")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/2_ligue_2")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/1_serie_a")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/2_serie_b")
+    self.football_generic_scrapper("http://betfirst.dhnet.be/football/primeira_liga")
   end
 
   def self.football_generic_scrapper( url)
@@ -20,14 +35,20 @@ class BetfirstScrapper
     lines= page.css('.types_bg .time, .types_bg .bets')
     day = Date.today
     # Go through all the days
+    lines.shift
+    lines.shift
     lines.each do |line|
 
       if line['class'] == "time"
+        puts line.text.to_s.strip
         puts "Time Class"
-        date = line.text.to_s.split('|').first
+        date = line.text.to_s.split('|').first.to_s.strip
         puts date
         day = Date.strptime(date.to_s, "%d/%m")
+        time = line.text.to_s.split('|').last.to_s.strip
       else
+        puts "not time"
+        puts line.text.to_s
         # Get the Game Name
         names = line.css('.team_betting span')
         # Get the teams name

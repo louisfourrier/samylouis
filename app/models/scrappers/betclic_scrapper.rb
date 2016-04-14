@@ -23,11 +23,20 @@ class BetclicScrapper
     self.football_generic_scrapper("https://www.betclic.fr/football/allemagne-bundesliga-e5")
     self.football_generic_scrapper("https://www.betclic.fr/football/allemagne-coupe-e55")
     self.football_generic_scrapper("https://www.betclic.fr/football/portugal-primeira-liga-e32")
+    self.football_generic_scrapper("https://www.betclic.fr/football/coupe-de-la-ligue-e40")
+    self.football_generic_scrapper("https://www.betclic.fr/football/coupe-de-la-ligue-e40")
+
+
+
 
   end
 
   def self.tennis_scrapper
     self.tennis_generic_scrapper("https://www.betclic.fr/calendrier-0?From=&SortBy=Date&Live=false&MultipleBoost=false&Competitions.Selected=2-0&StartIndex=0&Search=")
+  end
+
+  def self.basket_scrapper
+    self.basket_generic_scrapper("https://www.betclic.fr/calendrier/basket-ball-s4i1")
   end
 
   # BAsic Scrapper of the Betclic League Page
@@ -134,6 +143,58 @@ class BetclicScrapper
       end
     end
   end
+
+
+  # BAsic Scrapper of the Betclic League Page
+  def self.basket_generic_scrapper(base_url)
+    platform = 'BetClic'
+    sport = "basket"
+    scenario_name = "1:2 win-lose"
+    # response = Typhoeus.get(football_url, followlocation: true)
+    page = Nokogiri::HTML(open(base_url))
+    # Get all the coming days in the page
+    coming_days = page.css('#cal-wrapper-prelive .cal-day-entry')
+    # Go through all the days
+    coming_days.each do |daycode|
+      # Get the Day
+      date = daycode.css('.section-title > span').first.text
+      date_array = date.to_s.split(' ')
+      date_array.shift
+      date = date_array.join(' ')
+      day = date.to_s.to_date
+
+      # Get all the Game entries in the Day section
+      day_games = daycode.css('.match-entry')
+      day_games.each do |game_trade|
+        begin
+        # Get the Game Name
+        name = game_trade.css('.match-name').text
+        # Get the teams name
+        teams = name.split('-')
+        team_first = teams.first.to_s
+        team_second = teams.last.to_s
+        # Get the time
+        time = nil
+        # Get the links
+        link = base_url
+        # Get the odds
+        odds = game_trade.css('.match-odds .odd-button')
+        first_ratio = odds[0].text.to_s.gsub(',', '.').to_f
+        second_ratio = odds[1].text.to_s.gsub(',', '.').to_f
+
+        # Creation or update of the Trade
+        # Create the Sport Trade
+        st = SportTrade.create_or_update(platform_name: platform, platform_url: link, team_first: team_first, team_second: team_second, event_time: time, sport: sport, event_date: day, scenario_name: scenario_name,  last_update: Time.zone.now)
+        st.add_update_odd("first_team", first_ratio, team_first)
+        st.add_update_odd("second_team", second_ratio, team_second)
+      rescue
+        puts "Errors in Scraping BetClic Basket entry"
+      end
+
+      end
+    end
+  end
+
 
 
 

@@ -114,6 +114,7 @@ class BwinScrapper
         # Get all the Game entries in the Day section
         day_games = daycode.css('li.listing')
         day_games.each do |game_trade|
+          begin
 
             team_first = game_trade.css('.options .option-name').first.text
           team_second = game_trade.css('.options .option-name')[2].text
@@ -131,6 +132,9 @@ class BwinScrapper
           st.add_update_odd("first_team", first_ratio, team_first)
           st.add_update_odd("equality", both_ratio, "Match nul")
           st.add_update_odd("second_team", second_ratio, team_second)
+        rescue
+          puts "Error in Bwin football Scrapper"
+        end
 
         end
       end

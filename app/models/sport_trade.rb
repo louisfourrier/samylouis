@@ -41,9 +41,14 @@ class SportTrade < ActiveRecord::Base
   # Method that handles the creation or the update of a sport Trade from the Scrapper
   def self.create_or_update(params)
     platform = params[:platform_name]
-    team_first = self.team_sanitization(params[:team_first].to_s)
-    team_second = self.team_sanitization(params[:team_second].to_s)
     sport = params[:sport]
+    if sport.to_s == "football"
+      team_first = self.team_sanitization(params[:team_first].to_s)
+      team_second = self.team_sanitization(params[:team_second].to_s)
+    else
+      team_first = self.team_sanitization(params[:team_first].to_s, false)
+      team_second = self.team_sanitization(params[:team_second].to_s, false)
+    end
     scenario_name = params[:scenario_name]
     event_date = params[:event_date]
 
@@ -169,18 +174,25 @@ class SportTrade < ActiveRecord::Base
     if football
       name = SportSanitizer.football_team_sanitizer(name)
     end
+    name = name.to_s.gsub(' ', '')
     return name
   end
 
   # Sanitize Fields to have common grounds
   def sanitize_entries
     if !self.team_first.blank?
-      first_name = I18n.transliterate(self.team_first.to_s.downcase.strip).to_s.downcase.strip
-      self.team_first = SportSanitizer.football_team_sanitizer(first_name)
+      if self.sport == "football"
+        self.team_first = SportTrade.team_sanitization(self.team_first)
+      else
+        self.team_first = SportTrade.team_sanitization(self.team_first, false)
+      end
     end
     if !self.team_second.blank?
-      second_name = I18n.transliterate(self.team_second.to_s.downcase.strip).to_s.downcase.strip
-      self.team_second = SportSanitizer.football_team_sanitizer(second_name)
+      if self.sport == "football"
+        self.team_second = SportTrade.team_sanitization(self.team_second)
+      else
+        self.team_second = SportTrade.team_sanitization(self.team_second, false)
+      end
     end
   end
 end

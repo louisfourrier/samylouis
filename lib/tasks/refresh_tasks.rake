@@ -21,6 +21,7 @@ task :football_global_scrapping => :environment do
   ParionswebScrapper.football_scrapper
   PmuScrapper.football_scrapper
   ZebetScrapper.football_scrapper
+  LadbrokeScrapper.football_scrapper
 end
 
 task :tennis_global_scrapping => :environment do
@@ -42,9 +43,15 @@ task :basket_global_scrapping => :environment do
   ZebetScrapper.basket_scrapper
   PmuScrapper.basket_scrapper
   FrancepariScrapper.basket_scrapper
+  BetclicScrapper.basket_scrapper
 end
 
 task :all_global_scrapping => :environment do
+  puts "Clean Outdated Trade"
+  SportTrade.clean_outdated
+  puts "Clean outdated events"
+  SportEvent.clean_outdated
+  SportEvent.clean_not_linked
 
 
   puts "Scrapping on all the Bet Sites FOOTBALL"
@@ -55,7 +62,10 @@ task :all_global_scrapping => :environment do
   ParionswebScrapper.football_scrapper
   PmuScrapper.football_scrapper
   ZebetScrapper.football_scrapper
+  LadbrokeScrapper.football_scrapper
   UnibetScrapper.football_scrapper
+  BetfirstScrapper.football_scrapper
+  WinamaxScrapper.football_scrapper
 
   puts "Scrapping on all the Bet Sites TENNIS"
   NetbetScrapper.tennis_scrapper
@@ -64,6 +74,7 @@ task :all_global_scrapping => :environment do
   ZebetScrapper.tennis_scrapper
   PmuScrapper.tennis_scrapper
   FrancepariScrapper.tennis_scrapper
+  LadbrokeScrapper.tennis_scrapper
   BetclicScrapper.tennis_scrapper
   UnibetScrapper.tennis_scrapper
 
@@ -74,7 +85,9 @@ task :all_global_scrapping => :environment do
   ZebetScrapper.basket_scrapper
   PmuScrapper.basket_scrapper
   FrancepariScrapper.basket_scrapper
+  LadbrokeScrapper.basket_scrapper
   UnibetScrapper.basket_scrapper
+  BetclicScrapper.basket_scrapper
 
   puts "Calculate Inverse Ratio"
   SportEvent.update_inverse_sum

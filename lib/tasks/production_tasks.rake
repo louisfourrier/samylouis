@@ -23,6 +23,7 @@ task :prod_football_global_scrapping => :environment do
   ParionswebScrapper.football_scrapper
   PmuScrapper.football_scrapper
   ZebetScrapper.football_scrapper
+  LadbrokeScrapper.football_scrapper
 
   begin
     BetclicScrapper.football_scrapper
@@ -73,6 +74,7 @@ task :prod_all_global_scrapping => :environment do
   ParionswebScrapper.football_scrapper
   PmuScrapper.football_scrapper
   ZebetScrapper.football_scrapper
+  LadbrokeScrapper.football_scrapper
 
 
   puts "Scrapping on all the Bet Sites TENNIS"
@@ -82,6 +84,7 @@ task :prod_all_global_scrapping => :environment do
   ZebetScrapper.tennis_scrapper
   PmuScrapper.tennis_scrapper
   FrancepariScrapper.tennis_scrapper
+  LadbrokeScrapper.tennis_scrapper
 
   puts "Scrapping on all the Bet Sites BASKET"
   NetbetScrapper.basket_scrapper
@@ -90,6 +93,7 @@ task :prod_all_global_scrapping => :environment do
   ZebetScrapper.basket_scrapper
   PmuScrapper.basket_scrapper
   FrancepariScrapper.basket_scrapper
+  LadbrokeScrapper.basket_scrapper
 
   begin
     BetclicScrapper.football_scrapper

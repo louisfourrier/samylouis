@@ -56,7 +56,7 @@ class SportEvent < ActiveRecord::Base
   def self.update_inverse_sum
     find_each do |event|
       begin
-        event.update(inverse_sum: event.get_inverse_sum)
+        event.update_column(:inverse_sum, event.get_inverse_sum)
       rescue
         puts "Erreur dans le calcul de la somme inverse de Sport Event #{event.id}"
       end
@@ -66,7 +66,9 @@ class SportEvent < ActiveRecord::Base
  # Email the opportunities
   def self.email_opportunities
     sport_events_opp = self.where("sport_events.inverse_sum < ?", 1.0)
-    AlertMailer.opportunities(sport_events_opp).deliver
+    if !sport_events_opp.empty?
+      AlertMailer.opportunities(sport_events_opp).deliver
+    end
   end
 
   # Search Class method
@@ -125,13 +127,13 @@ class SportEvent < ActiveRecord::Base
   # Basic Sanitizing of entries
   def sanitize_entries
     unless event_name.blank?
-      self.event_name = I18n.transliterate(event_name.to_s.downcase.strip).to_s
+      self.event_name = I18n.transliterate(event_name.to_s.downcase.strip).to_s.downcase.strip
     end
     unless team_first.blank?
-      self.team_first = I18n.transliterate(team_first.to_s.downcase.strip).to_s
+      self.team_first = I18n.transliterate(team_first.to_s.downcase.strip).to_s.downcase.strip.gsub(' ', '')
     end
     unless team_second.blank?
-      self.team_second = I18n.transliterate(team_second.to_s.downcase.strip).to_s
+      self.team_second = I18n.transliterate(team_second.to_s.downcase.strip).to_s.downcase.strip.gsub(' ', '')
     end
   end
 
