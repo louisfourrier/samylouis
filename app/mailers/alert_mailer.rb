@@ -1,6 +1,6 @@
 class AlertMailer < ApplicationMailer
-  default reply_to: "SamyLouis BetBot <louis.fourrier@gmail.com>"
-  default from: "SamyLouis BetBot <louis.fourrier@gmail.com>"
+  default reply_to: "SamyLouis BetBot <samylouisbot@betbot.com>"
+  default from: "SamyLouis BetBot <samylouisbot@betbot.com>"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,7 +9,8 @@ class AlertMailer < ApplicationMailer
   #
   def opportunities(sport_events)
     @sport_events = sport_events
-    mail to: "louis.fourrier@gmail.com", subject: "Opportunités de pari détectées !"
+    subject = @sport_events.count.to_s + " Opportunités de pari détectées !"
+    mail to: "louis.fourrier@gmail.com, samy.jazaerli@gmail.com", subject: subject
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
