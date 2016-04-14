@@ -1,0 +1,14 @@
+<h1>Liste des opportunités de paris (<%= @sport_events.count %>)</h1>
+
+
+<% @sport_events.each do |sport_event| %>
+<p>
+  <%= link_to sport_event.event_name, sport_event_url %> <br  />
+  Inverse Ratio : <%= sport_event.inverse_sum %><br  />
+  Sport : <%= sport_event.sport %>
+
+  <% sport_event.get_odd_names.each do |name| %>
+  Best Odd for <strong><%= name %></strong> : <strong><%= sport_event.best_odd_for(name).value %></strong> <%= sport_event.best_odd_for(name).sport_trade.platform_name %><br />
+  <% end %>
+</p>
+<% end %>

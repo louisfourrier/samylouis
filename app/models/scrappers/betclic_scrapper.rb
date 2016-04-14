@@ -42,6 +42,7 @@ class BetclicScrapper
     coming_days = page.css('#competition-events .day-entry')
     # Go through all the days
     coming_days.each do |daycode|
+
       # Get the Day
       date = daycode.css('.section-title time')
       day = date.text.to_s.to_date
@@ -78,7 +79,6 @@ class BetclicScrapper
         st.add_update_odd("second_team", second_ratio, team_second)
       rescue
         "Errors in Betclic Football Scraper"
-
       end
 
       end

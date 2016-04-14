@@ -63,6 +63,12 @@ class SportEvent < ActiveRecord::Base
     end
   end
 
+ # Email the opportunities
+  def self.email_opportunities
+    sport_events_opp = self.where("sport_events.inverse_sum < ?", 1.0)
+    AlertMailer.opportunities(sport_events_opp).deliver
+  end
+
   # Search Class method
   def self.filter_search(attributes)
     attributes.inject(self) do |scope, (key, value)|

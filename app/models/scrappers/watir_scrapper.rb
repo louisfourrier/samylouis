@@ -3,7 +3,7 @@ class WatirScrapper
   require 'watir-webdriver'
 
   def self.initialize_browser
-    @brower ||= browser = Watir::Browser.new
+    @browser ||= Watir::Browser.new
   end
 
 

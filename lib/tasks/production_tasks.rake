@@ -1,4 +1,6 @@
-task :all_clean => :environment do
+## ALL THE TASKS THAT ARE COMPATIBLE WITH PRODUCTION AND DEPLOYMENT
+
+task :prod_all_clean => :environment do
   puts "Clean Outdated Trade"
   SportTrade.clean_outdated
   puts "Clean outdated events"
@@ -6,21 +8,27 @@ task :all_clean => :environment do
   SportEvent.clean_not_linked
 end
 
-task :compute_inverse => :environment do
+task :prod_compute_inverse => :environment do
   puts "Calculate Inverse Ratio"
   SportEvent.update_inverse_sum
 end
 
 
-task :football_global_scrapping => :environment do
+task :prod_football_global_scrapping => :environment do
   puts "Scrapping on all the Bet Sites"
-  BetclicScrapper.football_scrapper
+
   BwinScrapper.football_scrapper
   FrancepariScrapper.football_scrapper
   NetbetScrapper.football_scrapper
   ParionswebScrapper.football_scrapper
   PmuScrapper.football_scrapper
   ZebetScrapper.football_scrapper
+
+  begin
+    BetclicScrapper.football_scrapper
+  rescue
+    puts "Pb with betclic production"
+  end
 end
 
 task :tennis_global_scrapping => :environment do
@@ -31,10 +39,14 @@ task :tennis_global_scrapping => :environment do
   ZebetScrapper.tennis_scrapper
   PmuScrapper.tennis_scrapper
   FrancepariScrapper.tennis_scrapper
-  BetclicScrapper.tennis_scrapper
+  begin
+    BetclicScrapper.tennis_scrapper
+  rescue
+    puts "Pb with betclic production"
+  end
 end
 
-task :basket_global_scrapping => :environment do
+task :prod_basket_global_scrapping => :environment do
   puts "Scrapping on all the Bet Sites"
   NetbetScrapper.basket_scrapper
   BwinScrapper.basket_scrapper
@@ -44,18 +56,24 @@ task :basket_global_scrapping => :environment do
   FrancepariScrapper.basket_scrapper
 end
 
-task :all_global_scrapping => :environment do
+task :prod_all_global_scrapping => :environment do
+
+  puts "Clean Outdated Trade"
+  SportTrade.clean_outdated
+  puts "Clean outdated events"
+  SportEvent.clean_outdated
+  SportEvent.clean_not_linked
 
 
   puts "Scrapping on all the Bet Sites FOOTBALL"
-  BetclicScrapper.football_scrapper
+
   BwinScrapper.football_scrapper
   FrancepariScrapper.football_scrapper
   NetbetScrapper.football_scrapper
   ParionswebScrapper.football_scrapper
   PmuScrapper.football_scrapper
   ZebetScrapper.football_scrapper
-  UnibetScrapper.football_scrapper
+
 
   puts "Scrapping on all the Bet Sites TENNIS"
   NetbetScrapper.tennis_scrapper
@@ -64,8 +82,6 @@ task :all_global_scrapping => :environment do
   ZebetScrapper.tennis_scrapper
   PmuScrapper.tennis_scrapper
   FrancepariScrapper.tennis_scrapper
-  BetclicScrapper.tennis_scrapper
-  UnibetScrapper.tennis_scrapper
 
   puts "Scrapping on all the Bet Sites BASKET"
   NetbetScrapper.basket_scrapper
@@ -74,8 +90,15 @@ task :all_global_scrapping => :environment do
   ZebetScrapper.basket_scrapper
   PmuScrapper.basket_scrapper
   FrancepariScrapper.basket_scrapper
-  UnibetScrapper.basket_scrapper
+
+  begin
+    BetclicScrapper.football_scrapper
+    BetclicScrapper.tennis_scrapper
+  rescue
+    puts "Problem with Betclic on production"
+  end
 
   puts "Calculate Inverse Ratio"
   SportEvent.update_inverse_sum
+  SportEvent.email_opportunities
 end

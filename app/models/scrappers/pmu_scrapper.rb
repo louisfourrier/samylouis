@@ -148,6 +148,7 @@ class PmuScrapper
       # Get all the Game entries in the Day section
       day_games = daycode.css('.table2')
       day_games.each do |game_trade|
+        begin
         # Get the Game Name
         name = game_trade.css('.event-name-link a').text
         # Get the teams name
@@ -175,6 +176,9 @@ class PmuScrapper
         st.add_update_odd("first_team", first_ratio, team_first)
         st.add_update_odd("equality", both_ratio, "Match nul")
         st.add_update_odd("second_team", second_ratio, team_second)
+      rescue
+        puts "Errors in PMU Football scrapper"
+      end
       end
     end
 
