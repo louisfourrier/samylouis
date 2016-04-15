@@ -5,8 +5,19 @@ class ZebetScrapper
   require 'open-uri'
   require 'uri'
 
+
   def self.football_scrapper
-    footballurl = 'https://www.zebet.fr/fr/sport/13-football/paris'
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/180-euro_2016")
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/44-france")
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/43-angleterre")
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/15-espagne")
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/39-allemagne")
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/18-italie")
+    self.football_generic_scrapper("https://www.zebet.fr/fr/category/46-portugal")
+  end
+
+  def self.football_generic_scrapper(url)
+    footballurl = url
     platform = 'Zebet'
     sport = "football"
     scenario_name = "1:3 win-null-lose"

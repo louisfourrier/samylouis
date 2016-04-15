@@ -55,7 +55,11 @@ task :all_global_scrapping => :environment do
 
 
   puts "Scrapping on all the Bet Sites FOOTBALL"
+  begin
   BetclicScrapper.football_scrapper
+rescue
+  puts "Betclic football scrapper error"
+end
   BwinScrapper.football_scrapper
   FrancepariScrapper.football_scrapper
   NetbetScrapper.football_scrapper
@@ -75,7 +79,11 @@ task :all_global_scrapping => :environment do
   PmuScrapper.tennis_scrapper
   FrancepariScrapper.tennis_scrapper
   LadbrokeScrapper.tennis_scrapper
+  begin
   BetclicScrapper.tennis_scrapper
+rescue
+  puts "Betclic basket scrapper error"
+end
   UnibetScrapper.tennis_scrapper
 
   puts "Scrapping on all the Bet Sites BASKET"
@@ -87,7 +95,11 @@ task :all_global_scrapping => :environment do
   FrancepariScrapper.basket_scrapper
   LadbrokeScrapper.basket_scrapper
   UnibetScrapper.basket_scrapper
+  begin
   BetclicScrapper.basket_scrapper
+  rescue
+    puts "Betclic basket scrapper error"
+  end
 
   puts "Calculate Inverse Ratio"
   SportEvent.update_inverse_sum
