@@ -11,6 +11,9 @@
       <th>
         Last Update
       </th>
+      <th>
+        Time
+      </th>
       <th>Inverse sum</th>
       <th colspan="3"></th>
     </tr>
@@ -27,6 +30,9 @@
         <% end %>
         <td>
           <%= l sport_trade.last_update %>
+        </td>
+        <td>
+          <%=  sport_trade.event_time %>
         </td>
         <td><%= sport_trade.inverse_sum %></td>
         <td><%= link_to 'Voir', sport_trade %></td>
