@@ -2,13 +2,16 @@
 
 
 <% @sport_events.each do |sport_event| %>
-<p>
+<div>
   <%= link_to sport_event.event_name, sport_event_url(sport_event) %> <br  />
   Inverse Ratio : <%= sport_event.inverse_sum %><br  />
   Sport : <%= sport_event.sport %>
-
+  <div>
   <% sport_event.get_odd_names.each do |name| %>
-  Best Odd for <strong><%= name %></strong> : <strong><%= sport_event.best_odd_for(name).value %></strong> <%= sport_event.best_odd_for(name).sport_trade.platform_name %><br />
+  Best Odd for <strong><%= name %></strong> : <strong><%= sport_event.best_odd_for(name).value %></strong> <%= sport_event.best_odd_for(name).sport_trade.platform_name %>
+  Heure : <%= sport_event.best_odd_for(name).sport_trade.event_date %> <%= sport_event.best_odd_for(name).sport_trade.event_time %>
+  <br />
   <% end %>
-</p>
+  </div>
+</div>
 <% end %>
