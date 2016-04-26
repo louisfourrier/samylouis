@@ -65,10 +65,16 @@ class SportEvent < ActiveRecord::Base
 
  # Email the opportunities
   def self.email_opportunities
-    sport_events_opp = self.where("sport_events.inverse_sum < ?", 1.0)
+    sport_events_opp = self.worth_email_opportunities
     if !sport_events_opp.empty?
       AlertMailer.opportunities(sport_events_opp).deliver
     end
+  end
+
+  # MEthod that finds all the sport event that are worth an email. < 1 and Date > today 
+  def self.worth_email_opportunities
+    today = Date.today
+    sport_events_opp = self.where("sport_events.inverse_sum < ? AND sport_events.event_date > ?", 1.0, today)
   end
 
   # Search Class method

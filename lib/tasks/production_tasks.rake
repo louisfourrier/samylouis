@@ -87,7 +87,8 @@ task :prod_all_global_scrapping => :environment do
   puts "Scrapping on all the Bet Sites BASKET"
   NetbetScrapper.basket_scrapper
   BwinScrapper.basket_scrapper
-  ParionswebScrapper.basket_scrapper
+  # Parions Web has a Three odd based basket program => Cause pb with the odds
+  #ParionswebScrapper.basket_scrapper
   ZebetScrapper.basket_scrapper
   PmuScrapper.basket_scrapper
   FrancepariScrapper.basket_scrapper
