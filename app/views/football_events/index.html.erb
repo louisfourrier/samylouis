@@ -1,0 +1,9 @@
+
+<h1 class="page-header">Listing Football Events (<%= @football_events.count %>)</h1>
+
+<%= render partial: "football_events/football_events_list", locals: {football_events: @football_events} %>
+
+
+<br>
+
+<%= link_to 'New Football event', new_football_event_path %>

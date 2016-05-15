@@ -1,0 +1,41 @@
+<h1 class="page-header">Listing Tennis Trades (<%= @tennis_trades.count  %>)</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Sport event</th>
+      <th>Bet platform name</th>
+      <th>Team first name</th>
+      <th>Team second name</th>
+      <th>Event date</th>
+      <th>First ratio</th>
+      <th>Second ratio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tennis_trades.each do |tennis_trade| %>
+      <tr>
+        <td><%= link_to tennis_trade.sport_event.event_name, tennis_trade.sport_event %></td>
+        <td><%= tennis_trade.bet_platform_name %></td>
+
+        <td><%= tennis_trade.team_first_name %></td>
+        <td><%= tennis_trade.team_second_name %></td>
+        <td><%= tennis_trade.event_date %></td>
+
+        <td><%= tennis_trade.first_ratio %></td>
+        <td><%= tennis_trade.second_ratio %></td>
+
+
+        <td><%= link_to 'Show', tennis_trade %></td>
+        <td><%= link_to 'Edit', edit_tennis_trade_path(tennis_trade) %></td>
+        <td><%= link_to 'Destroy', tennis_trade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tennis trade', new_tennis_trade_path %>

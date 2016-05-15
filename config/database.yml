@@ -10,8 +10,8 @@ development:
   encoding: unicode
   database: samylouis
   pool:     5
-  username: blogtracker
-  password:
+  username: postgres
+  password: postgres
   template: template0
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -38,8 +38,8 @@ test:
   encoding: unicode
   database: samylouis
   pool:     5
-  username: blogtracker
-  password:
+  username: postgres
+  password: postgres
   template: template0
 
 production:
@@ -48,6 +48,6 @@ production:
   encoding: unicode
   database: samylouis
   pool:     5
-  username: blogtracker
-  password:
+  username: postgres
+  password: postgres
   template: template0

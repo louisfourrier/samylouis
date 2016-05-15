@@ -1,0 +1,96 @@
+
+<div class="text-left">
+	<%= form_tag("", method: "get", class: "form-inline") do %>
+
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-addon">
+				First Team
+			</div>
+
+			<%= text_field_tag :first_team, params[:first_team],prompt: "Nom equipe 1", class: 'form-control'  %>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-addon">
+				Second Team
+			</div>
+
+			<%= text_field_tag :second_team, params[:second_team],prompt: "Nom equipe 2", class: 'form-control'  %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-addon">
+				Platform
+			</div>
+
+			<%= text_field_tag :platform, params[:platform], prompt: "Platform name", class: 'form-control'  %>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="input-group">
+			<div class="input-group-addon">
+				Ordre
+			</div>
+
+			<%= select_tag(:order, options_for_select([["Created_at", "created_at-desc"], ["Event Date", "event_date-desc"]], params[:order]),prompt: "Ordre", class: 'form-control' ) %>
+		</div>
+	</div>
+
+	<%= submit_tag("Rechercher", class: "btn btn-info") %>
+	<% end %>
+</div>
+<div class="row">
+		<div class="text-center pagination-hd">
+			<%= will_paginate football_trades, renderer: BootstrapPagination::Rails  %>
+		</div>
+</div>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Football event</th>
+      <th>Bet platform name</th>
+
+
+      <th>Team first name</th>
+      <th>Team second name</th>
+      <th>Event date</th>
+
+      <th>First winning ratio</th>
+      <th>Both winning ratio</th>
+      <th>Second winning ratio</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% football_trades.each do |football_trade| %>
+      <tr>
+        <td><%= link_to football_trade.football_event.try(:event_name), football_trade.football_event %></td>
+        <td><%= football_trade.bet_platform_name %></td>
+
+        <td><%= football_trade.team_first_name %></td>
+        <td><%= football_trade.team_second_name %></td>
+        <td><%= football_trade.event_date %></td>
+
+        <td><%= football_trade.first_winning_ratio %></td>
+        <td><%= football_trade.both_winning_ratio %></td>
+        <td><%= football_trade.second_winning_ratio %></td>
+
+        <td><%= link_to 'Show', football_trade %></td>
+        <td><%= link_to 'Edit', edit_football_trade_path(football_trade) %></td>
+        <td><%= link_to 'Destroy', football_trade, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="row">
+		<div class="text-center pagination-hd">
+			<%= will_paginate football_trades, renderer: BootstrapPagination::Rails  %>
+		</div>
+</div>
