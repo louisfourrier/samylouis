@@ -86,6 +86,15 @@ class SportTrade < ActiveRecord::Base
       end
     end
   end
+ # Clean the sport trade with no event
+  def self.clean_not_linked
+    self.find_each do |trade|
+      if trade.sport_odds.empty
+        trade.destroy
+      end
+    end
+
+  end
 
   # Get the odd with the name name
   def get_odd_with_name(name)
