@@ -49,6 +49,8 @@ end
 task :all_global_scrapping => :environment do
   puts "Clean Outdated Trade"
   SportTrade.clean_outdated
+  SportTrade.clean_not_linked
+  SportOdd.clean_outdated
   puts "Clean outdated events"
   SportEvent.clean_outdated
   SportEvent.clean_not_linked
@@ -107,6 +109,11 @@ task :all_global_scrapping => :environment do
   end
 
   begin
+  ParionswebScrapper.football_scrapper
+  rescue
+    puts "Parions Web football scrapper error"
+  end
+
   UnibetScrapper.football_scrapper
   rescue
   puts "Unibet football scrapper error"
@@ -137,6 +144,7 @@ task :all_global_scrapping => :environment do
 
   begin
   BwinScrapper.tennis_scrapper
+
   rescue
   puts "Bwin tennis scrapper error"
   end
@@ -148,6 +156,11 @@ task :all_global_scrapping => :environment do
   end
 
   begin
+  ParionswebScrapper.tennis_scrapper
+  rescue
+  puts "Error parionsweb"
+  end
+
   ZebetScrapper.tennis_scrapper
   rescue
   puts "Zebet tennis scrapper error"
@@ -204,6 +217,12 @@ task :all_global_scrapping => :environment do
   ParionswebScrapper.basket_scrapper
   rescue
   puts "ParionsWeb basket scrapper error"
+  end
+
+  begin
+  ParionswebScrapper.basket_scrapper
+  rescue
+  puts "Error parionsweb"
   end
 
   begin
