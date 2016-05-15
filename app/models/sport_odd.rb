@@ -35,7 +35,7 @@ class SportOdd < ActiveRecord::Base
 
   # Method that delete all the sports odds that have not been refreshed in the last hour
   def self.clean_outdated
-    delete_time = Time.zone.now - 3600
+    delete_time = Time.zone.now - 1200
     self.where('sport_odds.last_update < ?', delete_time).destroy_all
   end
 
