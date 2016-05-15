@@ -28,7 +28,7 @@ class SportTrade < ActiveRecord::Base
 
   # Validations
   validates :team_first, :team_second, :event_date, presence: true
-  validates :team_first, uniqueness: { scope: [:platform_name, :sport, :team_second, :event_date ]}
+  validates :team_first, uniqueness: { scope: [:platform_name, :sport, :team_second, :event_date, :scenario_name ]}
 
   # Callbacks
   before_validation :sanitize_entries

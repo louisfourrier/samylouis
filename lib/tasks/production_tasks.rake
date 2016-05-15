@@ -60,6 +60,7 @@ end
 task :prod_all_global_scrapping => :environment do
   puts "Clean Outdated Trade"
   SportTrade.clean_outdated
+  SportOdd.clean_outdated
   puts "Clean outdated events"
   SportEvent.clean_outdated
   SportEvent.clean_not_linked

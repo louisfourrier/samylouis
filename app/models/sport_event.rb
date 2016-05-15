@@ -71,7 +71,7 @@ class SportEvent < ActiveRecord::Base
     end
   end
 
-  # MEthod that finds all the sport event that are worth an email. < 1 and Date > today 
+  # MEthod that finds all the sport event that are worth an email. < 1 and Date > today
   def self.worth_email_opportunities
     today = Date.today
     sport_events_opp = self.where("sport_events.inverse_sum < ? AND sport_events.event_date > ?", 1.0, today)
