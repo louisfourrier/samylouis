@@ -89,7 +89,7 @@ class SportTrade < ActiveRecord::Base
  # Clean the sport trade with no event
   def self.clean_not_linked
     self.find_each do |trade|
-      if trade.sport_odds.empty
+      if trade.sport_odds.empty?
         trade.destroy
       end
     end
